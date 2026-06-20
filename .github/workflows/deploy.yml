@@ -1,0 +1,41 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.5.3
+
+      - name: Set up Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.14.0
+          cache: 'pnpm'
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Build Application 🏗️
+        run: pnpm --filter @likhith/portfolio build -- --base-href /My_Portfolio/
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: apps/portfolio/dist/portfolio/browser
+          branch: gh-pages
+          clean: true

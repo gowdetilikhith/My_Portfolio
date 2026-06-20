@@ -1,0 +1,331 @@
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="Likhith Krishna Gowdeti home">
+    <span>LK</span>
+    <strong>{{ profile.name }}</strong>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <a href="#profile">Profile</a>
+    <a href="#timeline">Journey</a>
+    <a href="#stack">Tech Stack</a>
+    <a href="#work">LOBs</a>
+    <button class="nav-resume" type="button" (click)="openResume()" aria-label="Open resume preview">
+      <lucide-angular [img]="FileText" size="18"></lucide-angular>
+      Resume
+    </button>
+  </nav>
+</header>
+
+<div class="glow-blob glow-1"></div>
+<div class="glow-blob glow-2"></div>
+<div class="glow-blob glow-3"></div>
+
+<main id="home">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-left">
+      <!-- Profile Picture Avatar next to name/greeting -->
+      <div class="hero-intro-header">
+        <img src="assets/profile.jpg" alt="Likhith Krishna Gowdeti Profile" class="hero-intro-avatar">
+        <p class="eyebrow">Enterprise Billing & Charge Operations</p>
+      </div>
+
+      <h1>{{ profile.name }}</h1>
+      <p class="role-line">{{ profile.role }}</p>
+      <p class="summary">{{ profile.headline }}</p>
+      
+      <div class="hero-actions">
+        <button class="primary-action" type="button" (click)="openResume()">
+          <lucide-angular [img]="FileText" size="20"></lucide-angular>
+          Preview Resume
+        </button>
+        
+        <a class="download-action" href="assets/resume/SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf" download="SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf">
+          <lucide-angular [img]="Download" size="20"></lucide-angular>
+          Download CV
+        </a>
+        
+        <button class="secondary-action" type="button" (click)="openContact()">
+          <lucide-angular [img]="icons.Mail" size="20"></lucide-angular>
+          Contact Me
+        </button>
+      </div>
+
+      <div class="social-links">
+        <a class="social-link-item" [href]="profile.linkedIn" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile">
+          <lucide-angular [img]="icons.Linkedin" size="22"></lucide-angular>
+          <span>LinkedIn Professional Profile</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bento Statistics Grid including Profile Image -->
+    <div class="hero-right">
+      <div class="bento-grid">
+        <!-- Tall Portrait Card (Profile Photo) -->
+        <article class="bento-card photo-card">
+          <img src="assets/profile.jpg" alt="Likhith Krishna Gowdeti" class="bento-photo">
+          <div class="photo-overlay">
+            <h3>{{ profile.name }}</h3>
+            <p>{{ profile.role }}</p>
+          </div>
+        </article>
+        
+        <!-- Metrics Cards -->
+        <article class="bento-card stat-card" *ngFor="let metric of profile.metrics">
+          <strong>{{ metric.value }}</strong>
+          <span>{{ metric.label }}</span>
+        </article>
+        
+        <!-- Location Card -->
+        <article class="bento-card location-card">
+          <span>Current Base</span>
+          <strong>{{ profile.location }}</strong>
+          <a [href]="'mailto:' + profile.email" class="email-link">{{ profile.email }}</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary / Profile Section -->
+  <section id="profile" class="section-container profile-section">
+    <div class="section-header">
+      <p class="eyebrow">Professional Summary</p>
+      <h2>Enterprise Delivery Overview</h2>
+    </div>
+
+    <div class="profile-layout">
+      <div class="profile-card-main">
+        <p class="summary-text">{{ profile.summary }}</p>
+      </div>
+
+      <div class="signals-list">
+        <h3>Highlights & Operations</h3>
+        <div class="signal-item" *ngFor="let signal of profile.recruiterSignals">
+          <div class="signal-icon">
+            <lucide-angular [img]="CheckCircle2" size="20"></lucide-angular>
+          </div>
+          <p>{{ signal }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section (Redesigned as clean, minimal text-only cards in grid) -->
+  <section id="stack" class="section-container stack-section">
+    <div class="section-header">
+      <p class="eyebrow">Skills</p>
+      <h2>Tech Stack</h2>
+    </div>
+
+    <!-- Minimal Tech Cards Responsive Grid -->
+    <div class="tech-grid-minimal">
+      <div class="tech-card-minimal">
+        <h3>SAP BRIM</h3>
+      </div>
+      <div class="tech-card-minimal">
+        <h3>SAP BRIM CC (Convergent Charging)</h3>
+      </div>
+      <div class="tech-card-minimal">
+        <h3>SAP BRIM CM (Convergent Mediation)</h3>
+      </div>
+      <div class="tech-card-minimal">
+        <h3>SAP BRIM CI (Convergent Invoicing)</h3>
+      </div>
+      <div class="tech-card-minimal">
+        <h3>SAP HANA DB</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Domains -->
+  <section id="work" class="section-container work-section">
+    <div class="section-header">
+      <p class="eyebrow">Experience</p>
+      <h2>Line of Business Involved</h2>
+    </div>
+
+    <div class="domains-layout">
+      <article class="domain-card" *ngFor="let domain of profile.domains">
+        <div class="domain-icon-wrapper">
+          <lucide-angular [img]="ServerCog" size="30"></lucide-angular>
+        </div>
+        <h3>{{ domain.title }}</h3>
+        <p class="domain-copy">{{ domain.copy }}</p>
+        <div class="domain-footer">
+          <span class="impact-label">Operational Impact:</span>
+          <strong>{{ domain.impact }}</strong>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Journey Timeline (Descending Order) -->
+  <section id="timeline" class="section-container timeline-section">
+    <div class="section-header">
+      <p class="eyebrow">Timeline</p>
+      <h2>Career Timeline</h2>
+    </div>
+
+    <div class="journey-timeline">
+      <div class="timeline-line"></div>
+      
+      <article *ngFor="let item of profile.timeline; let idx = index" class="timeline-item" [class.left-aligned]="idx % 2 === 0" [class.right-aligned]="idx % 2 !== 0">
+        <div class="timeline-badge">
+          <lucide-angular [img]="CalendarDays" size="18"></lucide-angular>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-tag">{{ item.type }}</span>
+            <span class="timeline-year">{{ item.year }}</span>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <strong>{{ item.organization }}</strong>
+          <p>{{ item.description }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Awards and Education Section -->
+  <section class="section-container recognition-section">
+    <div class="recognition-layout">
+      <div class="recognition-left">
+        <p class="eyebrow">Recognition</p>
+        <h2>Capgemini Delivery Awards</h2>
+        <p class="awards-summary">Demonstrated consistent execution, automation leadership, and business continuity support across enterprise billing platforms.</p>
+        
+        <div class="education-card">
+          <div class="edu-icon">
+            <lucide-angular [img]="GraduationCap" size="24"></lucide-angular>
+          </div>
+          <div class="edu-info">
+            <h4>Education</h4>
+            <p>{{ profile.education }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards details with redirection links to LinkedIn posts -->
+      <div class="recognition-right">
+        <div class="award-item" *ngFor="let award of profile.awards">
+          <div class="award-icon">
+            <lucide-angular [img]="Award" size="24"></lucide-angular>
+          </div>
+          <div class="award-text-content">
+            <h4>{{ award.title }}</h4>
+            <p>{{ award.description }}</p>
+            <a [href]="award.link" target="_blank" rel="noreferrer" class="award-link-btn">
+              <lucide-angular [img]="ExternalLink" size="14"></lucide-angular>
+              Click here to view post
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <strong>{{ profile.name }}</strong>
+      <p>{{ profile.role }} based in {{ profile.location }}. Supporting enterprise billing and subscription systems via Convergent Charging operational excellence.</p>
+    </div>
+    <div class="footer-right">
+      <a [href]="'mailto:' + profile.email" aria-label="Send Email">
+        <lucide-angular [img]="icons.Mail" size="18"></lucide-angular>
+        {{ profile.email }}
+      </a>
+      <a [href]="'tel:' + profile.phone" aria-label="Call Phone">
+        <lucide-angular [img]="icons.Phone" size="18"></lucide-angular>
+        {{ profile.phone }}
+      </a>
+      <a [href]="profile.linkedIn" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <lucide-angular [img]="icons.Linkedin" size="18"></lucide-angular>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Likhith Krishna Gowdeti. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Modals & Overlays -->
+<div class="modal-backdrop" *ngIf="isContactOpen || isResumeOpen" (click)="isContactOpen = false; isResumeOpen = false" aria-hidden="true"></div>
+
+<!-- Premium Resume Modal with Iframe PDF Viewer & Download Link -->
+<section class="resume-modal" *ngIf="isResumeOpen" role="dialog" aria-modal="true" aria-labelledby="resume-title">
+  <button class="icon-button close-modal" type="button" (click)="isResumeOpen = false" aria-label="Close resume preview">
+    <lucide-angular [img]="icons.X" size="20"></lucide-angular>
+  </button>
+  
+  <div class="modal-header">
+    <span class="eyebrow">Resume Preview</span>
+    <h2 id="resume-title">{{ profile.name }}</h2>
+    <p class="role-subtitle">{{ profile.role }}</p>
+  </div>
+
+  <div class="resume-actions-bar">
+    <a class="modal-btn-primary" href="assets/resume/SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf" download="SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf">
+      <lucide-angular [img]="Download" size="18"></lucide-angular>
+      Download PDF Resume
+    </a>
+    <a class="modal-btn-secondary" [href]="profile.linkedIn" target="_blank" rel="noreferrer">
+      <lucide-angular [img]="icons.Linkedin" size="18"></lucide-angular>
+      View LinkedIn
+    </a>
+  </div>
+
+  <!-- Real PDF Document Preview Frame -->
+  <div class="pdf-viewer-container">
+    <iframe src="assets/resume/SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf#toolbar=0" width="100%" height="550px" style="border: none;" title="Resume PDF View"></iframe>
+  </div>
+
+  <div class="resume-quick-highlights">
+    <h4>CV Highlights</h4>
+    <div class="highlight-bullet" *ngFor="let item of profile.resumeHighlights">
+      <lucide-angular [img]="CheckCircle2" size="16"></lucide-angular>
+      <p>{{ item }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Modal -->
+<section class="contact-modal" *ngIf="isContactOpen" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+  <button class="icon-button close-modal" type="button" (click)="isContactOpen = false" aria-label="Close contact form">
+    <lucide-angular [img]="icons.X" size="20"></lucide-angular>
+  </button>
+  
+  <div class="modal-header">
+    <span class="eyebrow">Get In Touch</span>
+    <h2 id="contact-title">Contact</h2>
+    <p class="modal-desc">Send a message to discuss billing opportunities or production support projects.</p>
+  </div>
+
+  <form (ngSubmit)="submitContact()">
+    <div class="form-group">
+      <label for="contact-name">Name</label>
+      <input id="contact-name" name="name" [(ngModel)]="form.name" autocomplete="name" required placeholder="Your name">
+    </div>
+    
+    <div class="form-group">
+      <label for="contact-email">Email</label>
+      <input id="contact-email" name="email" type="email" [(ngModel)]="form.email" autocomplete="email" required placeholder="Your email address">
+    </div>
+    
+    <div class="form-group">
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" rows="5" [(ngModel)]="form.message" required placeholder="How can I help you?"></textarea>
+    </div>
+    
+    <button class="submit-btn" type="submit" [disabled]="submitState === 'sending'">
+      <lucide-angular [img]="icons.Mail" size="18"></lucide-angular>
+      <span>{{ submitState === 'sending' ? 'Sending...' : 'Send Message' }}</span>
+    </button>
+    
+    <p class="form-status success" *ngIf="submitState === 'sent'">Opening your mail client with prefilled details!</p>
+    <p class="form-status error" *ngIf="submitState === 'error'">Please fill in all the required fields.</p>
+  </form>
+</section>

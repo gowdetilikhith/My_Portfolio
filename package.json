@@ -1,0 +1,19 @@
+{
+  "name": "likhith-krishna-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack portfolio website for Likhith Krishna Gowdeti.",
+  "packageManager": "pnpm@11.5.3",
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c green,cyan \"pnpm --filter @likhith/api dev\" \"pnpm --filter @likhith/portfolio dev\"",
+    "build": "pnpm --filter @likhith/api build && pnpm --filter @likhith/portfolio build",
+    "preview": "pnpm --filter @likhith/portfolio preview",
+    "start:api": "pnpm --filter @likhith/api dev",
+    "start:web": "pnpm --filter @likhith/portfolio dev",
+    "lint": "pnpm --filter @likhith/portfolio lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "~5.8.3"
+  }
+}
