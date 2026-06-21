@@ -42,7 +42,7 @@ jobs:
         run: pnpm install
 
       - name: Build Application 🏗️
-        run: pnpm --filter @likhith/portfolio build -- --base-href /My_Portfolio/
+        run: pnpm --filter @likhith/portfolio build --base-href /My_Portfolio/
 
       - name: Upload artifact 📤
         uses: actions/upload-pages-artifact@v3
