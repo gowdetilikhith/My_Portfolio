@@ -5,7 +5,7 @@ export const profile = {
   email: "gowdetilikhith@gmail.com",
   linkedIn: "https://www.linkedin.com/in/likhith-krishna-gowdeti-b40366191/",
   location: "Bangalore, India",
-  resumeUrl: "assets/resume/SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf",
+  resumeUrl: "assets/resume/SAP_BRIM_Likhith_Krishna_Gowdeti_CV.pdf?v=1.0.1",
   summary:
     "SAP BRIM Operations & Support Consultant with 4+ years of hands-on experience in SAP Convergent Charging (CC), ARIBA integration, and Cloud Subscription billing. Proven expertise in production support, SLA-driven incident management, automation using Groovy scripting, and end-to-end BRIM business flows from quote and contract creation to FI-CA payment processing. Strong exposure to SAP CM, CI, CRM, and SAP HANA-based environments.",
   headline:
